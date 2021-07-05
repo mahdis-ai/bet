@@ -6,7 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from http_request_randomizer.requests.proxy.requestProxy import RequestProxy
 from selenium.webdriver.support.ui import Select
 from bs4 import BeautifulSoup
-
+import re
 driver = webdriver.Chrome('C:/Users/user/pyprojects/lib/chromedriver.exe')
 driver.get('https://1xbet-648374.top/registration/?tag=d_49778m_97c_101')
 import time
@@ -31,6 +31,17 @@ time.sleep(5)
 current_currency=driver.find_element(By.XPATH,"//div[@class='top-b__account']").click()
 other_currency=driver.find_elements_by_xpath("//div[@class='user-balance-list__item']")
 other_currency[1].click()
+time.sleep(3)
+my_account=driver.find_element_by_xpath("//a[@title='My account']").click()
+bet_history=driver.find_element_by_xpath("//a[@href='/office/history/']").click()
+#account_change=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[class='multiselect__input']")))
+#account_change.clear()
+#account_change.send_keys("Other currencies (IRR)")
+time.sleep(5)
+date=driver.find_element_by_xpath("//span[@class='apm-filters__date']").click()
+prev_month=driver.find_element_by_xpath("//span[@class='prev']").click()
+day=driver.find_element_by_xpath("//span[@class='cell day']/div[14]").click()
+show=WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='apm-filters__btn_alt show_history']"))).click()
 
 
 time.sleep(5)
@@ -54,4 +65,7 @@ bet_price.send_keys(5000)
 time.sleep(5)
 place_bet=WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='c-btn c-btn--size-l c-btn--block c-btn--gradient c-btn--gradient-accent u-upcase']"))).click()
 bet_number=driver.find_element(By.XPATH, "//div[class='c-coupon-modal__title']").text
+bet_number=re.sub(r'(Bet slip).*(:).*','',bet_number) 
 ok=WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='c-btn c-btn--size-m c-btn--block c-btn--gradient c-btn--gradient-accent u-upcase']"))).click()
+
+

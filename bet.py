@@ -40,17 +40,21 @@ bet_history=driver.find_element_by_xpath("//a[@href='/office/history/']").click(
 time.sleep(5)
 date=driver.find_element_by_xpath("//span[@class='apm-filters__date']").click()
 prev_month=driver.find_element_by_xpath("//span[@class='prev']").click()
-day=driver.find_element_by_xpath("//span[@class='cell day']/div[14]").click()
+day=driver.find_elements_by_xpath("//span[@class='cell day']")[5].click()
 show=WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='apm-filters__btn_alt show_history']"))).click()
+soup=BeautifulSoup(driver.page_source,'html.parser')
+bet_list=soup.find_all('p',class_='apm-panel-head__text has-tooltip')
+for bet in bet_list:
+    print(bet.text)
 
 
 time.sleep(5)
-match=driver.get('https://eyyvjvpnq.top/live/Basketball/215291-FIBA-U19-World-Championship/311936772-Iran-U19-Serbia-U19/')
+#match=driver.get('https://eyyvjvpnq.top/live/Basketball/215291-FIBA-U19-World-Championship/311936772-Iran-U19-Serbia-U19/')
 time.sleep(5)
 
 time.sleep(5)
-quarter=driver.find_element(By.XPATH, "//div[@class='c-tablo__text']").text
-quarter_number=quarter.split()[0]
+#quarter=driver.find_element(By.XPATH, "//div[@class='c-tablo__text']").text
+#quarter_number=quarter.split()[0]
 menu=driver.find_element(By.XPATH,"//div[@class='multiselect s-scoreboard-nav-multiselect']").click()
 bet_quarter=driver.find_element_by_xpath("//span[@class='multiselect__option']").click()
 time.sleep(5)

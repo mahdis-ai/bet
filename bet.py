@@ -3,9 +3,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from http_request_randomizer.requests.proxy.requestProxy import RequestProxy
-from selenium.webdriver.support.ui import Select
-from bs4 import BeautifulSoup
 import re
 import time
 def login(driver,user_name,pass_word,surname):
@@ -132,7 +129,7 @@ def betting():
 
 def check_result(user_name,pass_word,surname):
     driver = webdriver.Chrome('C:/Users/user/pyprojects/lib/chromedriver.exe')
-    driver.get('https://1xbet-648374.top/registration/?tag=d_49778m_97c_101')
+    driver.get('website link')
     time.sleep(5)
     block = driver.find_element(By.XPATH,"//a[@href='#deny']").click()
     login=driver.find_element_by_id('curLoginForm').click()

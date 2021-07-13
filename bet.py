@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 import re
 import time
 def login(driver,user_name,pass_word,surname):
-    driver.get('https://1xbet-188659.top/registration/?tag=d_49778m_97c_101')
+    driver.get("link of website")
     time.sleep(5)
     block = driver.find_element(By.XPATH,"//a[@href='#deny']").click()
     login_form=driver.find_element_by_id('curLoginForm').click()
@@ -23,7 +23,6 @@ def login(driver,user_name,pass_word,surname):
     password.send_keys(pass_word)
     login_button = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='auth-button auth-button--block auth-button--slide-up-hover auth-button--theme-secondary']"))).click()
     time.sleep(3)
-    #uncomment these lines if needed
     try:
         surname= WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[id='input_surname']")))
         surname.send_keys("business")
@@ -128,7 +127,7 @@ def bet_on_game(driver,match_link,even_type,price):
 def betting():
     driver = webdriver.Chrome('C:/Users/user/pyprojects/lib/chromedriver.exe')
     login(driver,"300244749","MyDream0","business")
-    bet_on_game(driver,'https://ppbemizn.top/live/Basketball/24591-Argentina-LNB/313144030-Union-De-Santa-Fe-Estudiantes-Tucumn/',"yes",5000)
+    #bet_on_game(driver,'link of match',"yes/no",integer price number)
 
 
 def check_result(user_name,pass_word,surname):
@@ -147,10 +146,13 @@ def check_result(user_name,pass_word,surname):
     password.send_keys(pass_word)
     login = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='auth-button auth-button--block auth-button--slide-up-hover auth-button--theme-secondary']"))).click()
     time.sleep(3)
-    #surname= WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[id='input_surname']")))
-    #surname.send_keys(surname)
-    #confirm = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='block-window__btn']"))).click()
-    time.sleep(5)
+    try:
+        surname= WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[id='input_surname']")))
+        surname.send_keys(surname)
+        confirm = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='block-window__btn']"))).click()
+        time.sleep(5)
+    except Exception:
+        pass
     try:
         current_currency=driver.find_element(By.XPATH,"//div[@class='top-b__account']").click()
     except Exception:
@@ -171,6 +173,5 @@ def check_result(user_name,pass_word,surname):
     bet_status=re.findall(r'.*Bet slip status?\s+(Win|Loss|Unsettled).*',bet_detail)[0]
     print(bet_status)
     return 1
-#print(bet_on_game('https://ppbemizn.top/live/Basketball/112475-Lebanon-Championship/313137396-Sporting-Al-Riyadi-Beirut-Champville-SC/',"yes",5000,"300244749","MyDream0","business"))
-betting()
+
 

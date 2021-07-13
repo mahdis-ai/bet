@@ -1,3 +1,3 @@
 # bet
-automating a betting website 
-automation of logging in,betting and checking results
+#automating a betting website  
+#automation of logging in, betting and checking results
